@@ -35,4 +35,47 @@ test("searchParamsToObject should handle URL-encoded characters", () => {
     email: "john@doe.com"
   };
   equal(JSON.stringify(result), JSON.stringify(expected), "Should handle URL-encoded characters properly");
+}); 
+
+// Test for isLeapYear function
+test("isLeapYear should return true for typical leap years", () => {
+  const result = isLeapYear(2020);
+  const expected = true;
+  equal(result, expected, "2020 should be a leap year");
+});
+
+test("isLeapYear should return false for non-leap years", () => {
+  const result = isLeapYear(2019);
+  const expected = false;
+  equal(result, expected, "2019 should not be a leap year");
+});
+
+test("isLeapYear should return true for years divisible by 400", () => {
+  const result = isLeapYear(2000);
+  const expected = true;
+  equal(result, expected, "2000 should be a leap year");
+});
+
+test("isLeapYear should return false for years divisible by 100 but not 400", () => {
+  const result = isLeapYear(1900);
+  const expected = false;
+  equal(result, expected, "1900 should not be a leap year");
+});
+
+test("isLeapYear should return an error message for negative years", () => {
+  const result = isLeapYear(-500);
+  const expected = "Error: Year cannot be negative.";
+  equal(result, expected, "Negative years should return an error");
+});
+
+test("isLeapYear should return an error message if passed a string", () => {
+  const result = isLeapYear("2020");
+  const expected = "Error: Year must be a number.";
+  equal(result, expected, "Passing a string should return an error");
+});
+
+test("isLeapYear should return an error message for non-numeric input", () => {
+  const result = isLeapYear(NaN);
+  const expected = "Error: Year must be a number.";
+  equal(result, expected, "NaN should return an error");
 });
